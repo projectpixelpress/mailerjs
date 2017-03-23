@@ -14,14 +14,14 @@ class emailMessage {
     }
 }
 
-var send_ses_to = function(recipient, options, htmlBody) {
+var send_ses_to = function(recipient, options, html_body) {
     //options = {template_name:'',subject:'',from:'',url_to_send:''}
     //recipient = { name: 'Good sir', email: 'brad@projectpixelpress.com' }
-    if (htmlBody == null) {
-      console.log('Will not send anything without a htmlBody!');
+    if (!html_body) {
+      console.log('Will not send anything without a html_body!');
       return;
     }
-    if (options == null) options = {};
+
     console.log('recipient: %o', recipient);
     if (recipient == null || recipient.email == null) {
         console.log('using default recipient');
@@ -30,7 +30,8 @@ var send_ses_to = function(recipient, options, htmlBody) {
         }
     }
 
-    if (options.subject == null) options.subject = 'Test subject';
+    options = options || {};
+    options.subject = options.subject || 'Test subject';
 
     var admin_email = 'brad@projectpixelpress.com';
 
@@ -38,7 +39,7 @@ var send_ses_to = function(recipient, options, htmlBody) {
         'subject': options.subject,
         'to': recipient.email,
         'bcc': admin_email,
-        'html': htmlBody
+        'html': html_body
     });
 
     mailer.sendMail(message);
