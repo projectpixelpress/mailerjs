@@ -24,6 +24,9 @@ var smtpTransport = nodemailer.createTransport({
 
 class emailMessage {
     constructor(args) {
+        for (var property in args) {
+            this[property] = args[property];
+        }
         this.from = args.from || "noreply@projectpixelpress.com";
         this.to = args.to || null;
         this.subject = args.subject || "message from ProjectPixelPress";
