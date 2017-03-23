@@ -1,6 +1,6 @@
 {
   "name": "mailerjs",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Wrapper to send email via Amazon SES",
   "main": "index.js",
   "scripts": {
