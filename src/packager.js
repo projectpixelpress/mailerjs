@@ -19,7 +19,7 @@ var send_ses_to = function(recipient, options, html_body) {
     //recipient = { name: 'Good sir', email: 'brad@projectpixelpress.com' }
     if (!html_body) {
       console.log('Will not send anything without a html_body!');
-      return;
+      throw new Error('Cannot send an email with an empty body');
     }
 
     console.log('recipient: %o', recipient);
