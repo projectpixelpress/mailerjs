@@ -78,7 +78,7 @@ var send_ses_to = function(recipient, options) {
     var body = body.split("*|CLICK_HERE|*").join(options.url_to_send);
     var body = body.split("*|NAME_OF_RECIPIENT|*").join(recipient.name);
 
-    var message = new mailer.emailMessage({
+    var message = new emailMessage({
         "subject": options.subject,
         "to": recipient.email,
         "bcc": admin_email,
