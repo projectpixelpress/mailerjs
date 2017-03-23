@@ -4,7 +4,7 @@
   "description": "Wrapper to send email via Amazon SES",
   "main": "src/mailer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -16,11 +16,17 @@
     "url": "https://github.com/projectpixelpress/mailerjs/issues"
   },
   "homepage": "https://github.com/projectpixelpress/mailerjs#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "salesforceiq": "^1.0.0",
+    "sinon": "^2.1.0"
+  },
   "dependencies": {
-    "fs": "0.0.1-security",
+    "fs-extra": "0.20.1",
     "mandrill-api": "^1.0.45",
-    "moment": "^2.18.1",
-    "nodemailer": "^3.1.8",
-    "string": "^3.3.3"
+    "moment": "^2.14.1",
+    "nodemailer": "^2.6.4",
+    "string": "^3.3.1"
   }
 }
