@@ -66,6 +66,14 @@ describe('packager', () => {
             expect(actual.to).to.equal('brad@projectpixelpress.com');
         });
 
+        it('defaults recipient email if it is not set ', () => {
+          packager.send_ses_to({name: "who cares"}, null, 'a body');
+
+          expect(mailer.sendMail.calledOnce).to.be.true;
+          actual = mailer.sendMail.getCall(0).args[0];
+          expect(actual.to).to.equal('brad@projectpixelpress.com');
+        });
+
         it('bccs the admin', () => {
           const expectedBody = 'a very hot body';
 
