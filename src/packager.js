@@ -14,30 +14,29 @@ class emailMessage {
     }
 }
 
-var send_ses_to = function(recipient, options, html_body) {
-    //options = {template_name:'',subject:'',from:'',url_to_send:''}
-    //recipient = { name: 'Good sir', email: 'brad@projectpixelpress.com' }
+var send_ses_to = function(options, html_body) {
+    //options = {to: 'brad@projectpixelpress.com', template_name:'',subject:'',from:'',url_to_send:''}
     if (!html_body) {
       console.log('Will not send anything without a html_body!');
       throw new Error('Cannot send an email with an empty body');
     }
 
-    console.log('recipient: %o', recipient);
-    if (recipient == null || recipient.email == null) {
+    options = options || {};
+    if (!options.to) {
         console.log('using default recipient');
-        recipient = {
-            email: 'brad@projectpixelpress.com'
-        }
+        options.to = 'brad@projectpixelpress.com';
+    } else {
+      console.log('options: %o', options);
     }
 
-    options = options || {};
+
     options.subject = options.subject || 'Test subject';
 
     var admin_email = 'brad@projectpixelpress.com';
 
     var message = new emailMessage({
         'subject': options.subject,
-        'to': recipient.email,
+        'to': options.to,
         'bcc': admin_email,
         'html': html_body
     });
