@@ -24,8 +24,6 @@
   },
   "dependencies": {
     "fs-extra": "0.20.1",
-    "mandrill-api": "^1.0.45",
-    "moment": "^2.14.1",
     "nodemailer": "^2.6.4",
     "string": "^3.3.1"
   }
