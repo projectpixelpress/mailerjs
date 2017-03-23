@@ -1,11 +1,11 @@
 var fs = require('fs');
 
 var parse_template = function(recipient, options, templatePath) {
-  if (templatePath == null) {
+  if (!templatePath) {
     console.log('Cannot parse template without knowing where your templates are');
     throw new Error('Cannot parse template without knowing where your templates are');
   }
-  if (options == null) options = {};
+
   console.log('recipient: %o', recipient);
   if (recipient == null || recipient.name == null) {
       console.log('using default recipient');
@@ -13,10 +13,11 @@ var parse_template = function(recipient, options, templatePath) {
           name: 'Good sir'
       }
   }
-  if (options.template_name == null) options.template_name = 'Verification';
-  if (options.userName == null) options.userName = 'New User';
-  if (options.verifyCode == null) options.verifyCode = 'NONE';
-  if (options.url_to_send == null) options.url_to_send = 'http://bloxelsbuilder.com';
+  options = options || {};
+  options.template_name = options.template_name || 'Verification';
+  options.userName = options.userName || 'New User';
+  options.verifyCode = options.verifyCode || 'NONE';
+  options.url_to_send = options.url_to_send || 'http://bloxelsbuilder.com';
 
   var templateFile = fs.readFileSync(templatePath + '/' + options.template_name + '.html', 'utf8');
   var body = templateFile.split('*|USERNAME|*').join(options.userName);
