@@ -14,10 +14,6 @@ describe('mailerjs', function() {
       mailerjs = require('./../src/mailer');
     });
 
-    it('should export a function called send_mandrill_to', function() {
-      expect(mailerjs.send_mandrill_to).to.be.exist;
-    });
-
     it('should export a function called send_ses_to', function() {
       expect(mailerjs.send_ses_to).to.be.exist;
     });
