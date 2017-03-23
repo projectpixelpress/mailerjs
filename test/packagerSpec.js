@@ -77,10 +77,9 @@ describe('packager', () => {
         });
 
         it('will not send without a body', () => {
-            packager.send_ses_to(null, null, null);
-            packager.send_ses_to();
-            packager.send_ses_to({}, {});
-
+            expect(packager.send_ses_to.bind()).to.throw('Cannot send an email with an empty body');
+            expect(packager.send_ses_to.bind({}, {})).to.throw('Cannot send an email with an empty body');
+            expect(packager.send_ses_to.bind(null, null, null)).to.throw('Cannot send an email with an empty body');
             expect(mailer.sendMail.callCount).to.equal(0);
         });
 

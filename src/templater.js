@@ -3,7 +3,7 @@ var fs = require('fs');
 var parse_template = function(recipient, options, templatePath) {
   if (templatePath == null) {
     console.log('Cannot parse template without knowing where your templates are');
-    return;
+    throw new Error('Cannot parse template without knowing where your templates are');
   }
   if (options == null) options = {};
   console.log('recipient: %o', recipient);
