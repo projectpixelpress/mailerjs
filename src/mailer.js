@@ -2,7 +2,7 @@ var nodemailer = require('nodemailer'),
     fs = require('fs'),
     moment = require('moment'),
     mandrill = require('mandrill-api'),
-    templatePath = __base + 'lib/html',
+    templatePath = 'lib/html',
     S = require('string');
 
 // Create a Sendmail transport object
