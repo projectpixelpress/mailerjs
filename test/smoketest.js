@@ -1,15 +1,15 @@
-var chai = require('chai');
-var expect = chai.expect;
+const chai = require('chai');
+const expect = chai.expect;
 
 
-describe('mailerjs', function() {
+describe('smoketest - mailerjs', function() {
   it('should be import-able', function() {
-    var testObject = require('./../src/mailer');
+    const testObject = require('./../src/mailer');
     expect(testObject).to.be.exist;
   });
 
   describe('once imported', function() {
-    var mailerjs;
+    let mailerjs;
     before(function() {
       mailerjs = require('./../src/mailer');
     });
@@ -22,7 +22,7 @@ describe('mailerjs', function() {
       expect(mailerjs.sendMail).to.be.exist;
     });
 
-    it('should export a function called emailMessage', function() {
+    it('should export a class called emailMessage', function() {
       expect(mailerjs.emailMessage).to.be.exist;
     });
   });

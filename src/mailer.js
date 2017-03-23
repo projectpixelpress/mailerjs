@@ -8,20 +8,6 @@ var nodemailer = require('nodemailer'),
 // Create a Sendmail transport object
 var transport = nodemailer.createTransport("Sendmail", "/usr/sbin/sendmail");
 
-var Class = function(methods) {
-    var klass = function() {
-        this.initialize.apply(this, arguments);
-    };
-
-    for (var property in methods) {
-        klass.prototype[property] = methods[property];
-    }
-
-    if (!klass.prototype.initialize) klass.prototype.initialize = function() {};
-
-    return klass;
-};
-
 var smtpTransport = nodemailer.createTransport({
     service: "SES-US-WEST-2",
     auth: {
@@ -36,16 +22,15 @@ var smtpTransport = nodemailer.createTransport({
     //}
 });
 
-var emailMessage = Class({
-    initialize: function(arguments) {
-        this.from = arguments.from || "noreply@projectpixelpress.com";
-        this.to = arguments.to || null;
-        this.subject = arguments.subject || "message from ProjectPixelPress";
-        this.html = arguments.html || "<h1>aloha</h1>";
+class emailMessage {
+    constructor(args) {
+        this.from = args.from || "noreply@projectpixelpress.com";
+        this.to = args.to || null;
+        this.subject = args.subject || "message from ProjectPixelPress";
+        this.html = args.html || "<h1>aloha</h1>";
         this.text = S(this.html).stripTags().s;
-        //console.log("EMAIL SENT: %o", this);
     }
-});
+}
 
 var sendMail = function(message) {
     if (!message) return false;
