@@ -57,7 +57,7 @@ describe('packager', () => {
         it('defaults', () => {
             const expectedBody = 'a very hot body';
 
-            packager.send_ses_to(null, null, expectedBody);
+            packager.send_ses_to(null, expectedBody);
 
             expect(mailer.sendMail.calledOnce).to.be.true;
             actual = mailer.sendMail.getCall(0).args[0];
@@ -67,7 +67,7 @@ describe('packager', () => {
         });
 
         it('defaults recipient email if it is not set ', () => {
-          packager.send_ses_to({name: "who cares"}, null, 'a body');
+          packager.send_ses_to({name: "who cares"}, 'a body');
 
           expect(mailer.sendMail.calledOnce).to.be.true;
           actual = mailer.sendMail.getCall(0).args[0];
@@ -77,7 +77,7 @@ describe('packager', () => {
         it('bccs the admin', () => {
           const expectedBody = 'a very hot body';
 
-          packager.send_ses_to(null, null, expectedBody);
+          packager.send_ses_to(null, expectedBody);
 
           expect(mailer.sendMail.calledOnce).to.be.true;
           actual = mailer.sendMail.getCall(0).args[0];
@@ -86,8 +86,8 @@ describe('packager', () => {
 
         it('will not send without a body', () => {
             expect(packager.send_ses_to.bind()).to.throw('Cannot send an email with an empty body');
-            expect(packager.send_ses_to.bind({}, {})).to.throw('Cannot send an email with an empty body');
-            expect(packager.send_ses_to.bind(null, null, null)).to.throw('Cannot send an email with an empty body');
+            expect(packager.send_ses_to.bind({})).to.throw('Cannot send an email with an empty body');
+            expect(packager.send_ses_to.bind(null, null)).to.throw('Cannot send an email with an empty body');
             expect(mailer.sendMail.callCount).to.equal(0);
         });
 
@@ -95,8 +95,8 @@ describe('packager', () => {
             const expectedEmail = 'anEmail@totally.org';
 
             packager.send_ses_to({
-                email: expectedEmail
-            }, null, 'a body');
+                to: expectedEmail
+            }, 'a body');
 
             expect(mailer.sendMail.calledOnce).to.be.true;
             actual = mailer.sendMail.getCall(0).args[0];
@@ -106,7 +106,7 @@ describe('packager', () => {
         it('reads from options for subject', () => {
             const expectedSubject = 'Subject to further investigation';
 
-            packager.send_ses_to(null, {
+            packager.send_ses_to({
                 subject: expectedSubject
             }, 'a body');
 
