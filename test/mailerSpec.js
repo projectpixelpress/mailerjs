@@ -18,25 +18,31 @@ describe('mailerjs', function() {
             expect(testObject.html).to.equal("<h1>aloha</h1>");
             expect(testObject.text).to.equal("aloha");
         });
-        it('can be overridden with real values', function() {
-            const expectedFrom = 'test@example.com';
-            const expectedTo = 'worstUser@anotherEmail.gov';
-            const expectedSubject = 'Here\'s some mail!';
-            const expectedHtml = '<marquee>dummy</marquee>';
-            const expectedText = 'dummy';
-            const testObject = new mailerjs.emailMessage({
-              from: expectedFrom,
-              to: expectedTo,
-              subject: expectedSubject,
-              html: expectedHtml,
-              text: expectedText,
-            });
 
-            expect(testObject.from).to.equal(expectedFrom);
-            expect(testObject.to).to.equal(expectedTo);
-            expect(testObject.subject).to.equal(expectedSubject);
-            expect(testObject.html).to.equal(expectedHtml);
-            expect(testObject.text).to.equal(expectedText);
+        it('can be overridden with real values', function() {
+            expected = {
+              from: 'test@example.com',
+              to: 'worstUser@anotherEmail.gov',
+              subject: 'Here\'s some mail!',
+              html: '<marquee>dummy</marquee>',
+              text: 'dummy',
+            };
+            const testObject = new mailerjs.emailMessage(expected);
+
+            expect(testObject.from).to.equal(expected.from);
+            expect(testObject.to).to.equal(expected.to);
+            expect(testObject.subject).to.equal(expected.subject);
+            expect(testObject.html).to.equal(expected.html);
+            expect(testObject.text).to.equal(expected.text);
+        });
+
+        it('adds everything w/o a default', function() {
+          expected = {
+            unexpected: 'spanish inquisition'
+          };
+          const testObject = new mailerjs.emailMessage(expected);
+
+          expect(testObject.unexpected).to.equal(expected.unexpected);
         });
     });
 });
