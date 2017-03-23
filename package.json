@@ -23,7 +23,6 @@
     "sinon": "^2.1.0"
   },
   "dependencies": {
-    "fs-extra": "0.20.1",
     "nodemailer": "^2.6.4",
     "string": "^3.3.1"
   }
