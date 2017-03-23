@@ -1,4 +1,4 @@
-var parse_template = function(recipient, options, template) {
+const parse_template = function(recipient, options, template) {
   if (!template) {
     console.log('Cannot null/empty parse template');
     throw new Error('Cannot null/empty parse template');
@@ -16,10 +16,10 @@ var parse_template = function(recipient, options, template) {
   options.verifyCode = options.verifyCode || 'NONE';
   options.url_to_send = options.url_to_send || 'http://bloxelsbuilder.com';
 
-  var body = template.split('*|USERNAME|*').join(options.userName);
-  var body = body.split('*|ACTIVATION_CODE|*').join(options.verifyCode);
-  var body = body.split('*|CLICK_HERE|*').join(options.url_to_send);
-  var body = body.split('*|NAME_OF_RECIPIENT|*').join(recipient.name);
+  let body = template.split('*|USERNAME|*').join(options.userName);
+  body = body.split('*|ACTIVATION_CODE|*').join(options.verifyCode);
+  body = body.split('*|CLICK_HERE|*').join(options.url_to_send);
+  body = body.split('*|NAME_OF_RECIPIENT|*').join(recipient.name);
 
   return body;
 }
