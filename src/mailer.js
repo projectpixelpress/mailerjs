@@ -5,9 +5,6 @@ var nodemailer = require('nodemailer'),
     templatePath = 'lib/html',
     S = require('string');
 
-// Create a Sendmail transport object
-var transport = nodemailer.createTransport("Sendmail", "/usr/sbin/sendmail");
-
 var smtpTransport = nodemailer.createTransport({
     service: "SES-US-WEST-2",
     auth: {
