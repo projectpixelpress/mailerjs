@@ -67,21 +67,23 @@ describe('packager', () => {
         });
 
         it('defaults recipient email if it is not set ', () => {
-          packager.send_ses_to({name: "who cares"}, 'a body');
+            packager.send_ses_to({
+                name: "who cares"
+            }, 'a body');
 
-          expect(mailer.sendMail.calledOnce).to.be.true;
-          actual = mailer.sendMail.getCall(0).args[0];
-          expect(actual.to).to.equal('brad@projectpixelpress.com');
+            expect(mailer.sendMail.calledOnce).to.be.true;
+            actual = mailer.sendMail.getCall(0).args[0];
+            expect(actual.to).to.equal('brad@projectpixelpress.com');
         });
 
         it('bccs the admin', () => {
-          const expectedBody = 'a very hot body';
+            const expectedBody = 'a very hot body';
 
-          packager.send_ses_to(null, expectedBody);
+            packager.send_ses_to(null, expectedBody);
 
-          expect(mailer.sendMail.calledOnce).to.be.true;
-          actual = mailer.sendMail.getCall(0).args[0];
-          expect(actual.bcc).to.equal('brad@projectpixelpress.com');
+            expect(mailer.sendMail.calledOnce).to.be.true;
+            actual = mailer.sendMail.getCall(0).args[0];
+            expect(actual.bcc).to.equal('brad@projectpixelpress.com');
         });
 
         it('will not send without a body', () => {

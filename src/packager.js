@@ -17,8 +17,8 @@ class emailMessage {
 var send_ses_to = function(options, html_body) {
     //options = {to: 'brad@projectpixelpress.com', template_name:'',subject:'',from:'',url_to_send:''}
     if (!html_body) {
-      console.log('Will not send anything without a html_body!');
-      throw new Error('Cannot send an email with an empty body');
+        console.log('Will not send anything without a html_body!');
+        throw new Error('Cannot send an email with an empty body');
     }
 
     options = options || {};
@@ -26,7 +26,7 @@ var send_ses_to = function(options, html_body) {
         console.log('using default recipient');
         options.to = 'brad@projectpixelpress.com';
     } else {
-      console.log('options: %o', options);
+        console.log('options: %o', options);
     }
 
 
