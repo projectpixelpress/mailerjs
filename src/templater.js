@@ -7,7 +7,7 @@ var parse_template = function(recipient, options, templatePath) {
   }
   if (options == null) options = {};
   console.log('recipient: %o', recipient);
-  if (recipient == null || recipient.email == null) {
+  if (recipient == null || recipient.name == null) {
       console.log('using default recipient');
       recipient = {
           name: 'Good sir'
@@ -15,7 +15,6 @@ var parse_template = function(recipient, options, templatePath) {
   }
   if (options.template_name == null) options.template_name = 'Verification';
   if (options.userName == null) options.userName = 'New User';
-  if (options.from == null) options.from = 'support@bloxelsbuilder.com';
   if (options.verifyCode == null) options.verifyCode = 'NONE';
   if (options.url_to_send == null) options.url_to_send = 'http://bloxelsbuilder.com';
 
