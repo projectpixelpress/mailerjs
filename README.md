@@ -3,4 +3,4 @@ mailerjs
 
 To get this:
 
-`npm install https://github.com/projectpixelpress/mailerjs`
+`npm install --save projectpixelpress/mailerjs`
