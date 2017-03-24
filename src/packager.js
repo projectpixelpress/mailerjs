@@ -3,9 +3,7 @@ const S = require('string'),
 
 class emailMessage {
     constructor(args) {
-        for (var property in args) {
-            this[property] = args[property];
-        }
+        Object.assign(this, args);
         this.from = args.from || 'noreply@projectpixelpress.com';
         this.to = args.to || null;
         this.subject = args.subject || 'message from ProjectPixelPress';
