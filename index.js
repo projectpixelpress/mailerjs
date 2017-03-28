@@ -10,7 +10,7 @@ const extraParams = function() {
         console.log("changing to gmail");
         delete mailer.smtpTransport;
         mailer.smtpTransport = nodemailer.createTransport(
-            "SMTP", {
+            {
                 service: "Gmail",
                 auth: {
                     user: "share@projectpixelpress.com",
