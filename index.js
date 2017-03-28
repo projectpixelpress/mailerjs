@@ -6,6 +6,7 @@ var nodemailer = require('nodemailer');
 const extraParams = function() {
     console.log("extra params: %o",arguments);
 
+    if(arguments && arguments["transport"] && arguments["transport"] === "gmail") {
     delete mailer.smtpTransport;
     mailer.smtpTransport = nodemailer.createTransport(
         "SMTP", {
@@ -16,6 +17,7 @@ const extraParams = function() {
             }
         }
     );
+    }
 
     return Object.assign(extraParams, mailer, packager, templater);
 }
