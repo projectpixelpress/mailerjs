@@ -23,7 +23,7 @@
     "sinon": "^2.1.0"
   },
   "dependencies": {
-    "nodemailer": "^2.6.4",
+    "nodemailer": "^0.7.1",
     "string": "^3.3.1"
   }
 }
