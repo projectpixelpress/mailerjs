@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 const extraParams = function() {
     console.log("extra params: %o",arguments);
 
-    if(arguments && arguments[0]["transport"] && arguments[0]["transport"] === "gmail") {
+    if(!!arguments && arguments[0]["transport"] && arguments[0]["transport"] === "gmail") {
         console.log("changing to gmail");
         delete mailer.smtpTransport;
         mailer.smtpTransport = nodemailer.createTransport(
