@@ -77,13 +77,21 @@ describe('packager', () => {
         });
 
         it('bccs the admin', () => {
-            const expectedBody = 'a very hot body';
-
-            packager.send(null, expectedBody);
+            packager.send(null, 'a very hot body');
 
             expect(mailer.sendMail.calledOnce).to.be.true;
             actual = mailer.sendMail.getCall(0).args[0];
             expect(actual.bcc).to.equal('brad@projectpixelpress.com');
+        });
+
+        it('will add other fields to the message, like \'from\'', () => {
+            const expectedFromField = 'gravy@boat.net';
+
+            packager.send({from: expectedFromField}, 'a very hot body');
+
+            expect(mailer.sendMail.calledOnce).to.be.true;
+            actual = mailer.sendMail.getCall(0).args[0];
+            expect(actual.from).to.equal(expectedFromField);
         });
 
         it('will not send without a body', () => {

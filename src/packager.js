@@ -27,16 +27,12 @@ const send = function(options, html_body) {
         console.log('options: %o', options);
     }
 
-    options.subject = options.subject || 'Test subject';
-
     const admin_email = 'brad@projectpixelpress.com';
+    options.subject = options.subject || 'Test subject';
+    options.bcc = admin_email;
+    options.html = html_body;
 
-    const message = new emailMessage({
-        'subject': options.subject,
-        'to': options.to,
-        'bcc': admin_email,
-        'html': html_body
-    });
+    const message = new emailMessage(options);
 
     mailer.sendMail(message);
 }
