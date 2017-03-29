@@ -5,7 +5,7 @@ To get this:
 
 `npm install --save projectpixelpress/mailerjs`
 
-To use gmail instead of SES do:
+To use:
 
-`require('mailerjs')({"transport":"gmail"})`
+`mailer = require('mailerjs')({"transport":"gmail","username":"USERNAME","password":"PASSWORD"})`
 
