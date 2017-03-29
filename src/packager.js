@@ -12,7 +12,7 @@ class emailMessage {
     }
 }
 
-var send_ses_to = function(options, html_body) {
+const send = function(options, html_body) {
     //options = {to: 'brad@projectpixelpress.com', template_name:'',subject:'',from:'',url_to_send:''}
     if (!html_body) {
         console.log('Will not send anything without a html_body!');
@@ -27,12 +27,11 @@ var send_ses_to = function(options, html_body) {
         console.log('options: %o', options);
     }
 
-
     options.subject = options.subject || 'Test subject';
 
-    var admin_email = 'brad@projectpixelpress.com';
+    const admin_email = 'brad@projectpixelpress.com';
 
-    var message = new emailMessage({
+    const message = new emailMessage({
         'subject': options.subject,
         'to': options.to,
         'bcc': admin_email,
@@ -43,6 +42,6 @@ var send_ses_to = function(options, html_body) {
 }
 
 module.exports = {
-    send_ses_to: send_ses_to,
+    send: send,
     emailMessage: emailMessage,
 };

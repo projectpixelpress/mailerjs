@@ -14,8 +14,8 @@ describe('smoketest - mailerjs', function() {
             mailerjs = require('./../index');
         });
 
-        it('should export a function called send_ses_to', function() {
-            expect(mailerjs.send_ses_to).to.be.exist;
+        it('should export a function called send', function() {
+            expect(mailerjs.send).to.be.exist;
         });
 
         it('should export a function called sendMail', function() {

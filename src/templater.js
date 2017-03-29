@@ -5,7 +5,7 @@ const parse_template = function(template, replacements) {
     }
 
     let body = template;
-    for (replacementKey in replacements) {
+    for (const replacementKey in replacements) {
         const replaceWith = replacements[replacementKey];
         body = body.split(replacementKey).join(replaceWith);
     }
