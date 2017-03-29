@@ -61,7 +61,7 @@ describe('packager', () => {
 
             expect(mailer.sendMail.calledOnce).to.be.true;
             actual = mailer.sendMail.getCall(0).args[0];
-            expect(actual.subject).to.equal('Test subject');
+            expect(actual.subject).to.equal('message from ProjectPixelPress');
             expect(actual.html).to.equal(expectedBody);
             expect(actual.to).to.equal('brad@projectpixelpress.com');
         });
