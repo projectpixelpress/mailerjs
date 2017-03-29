@@ -28,7 +28,7 @@ const send = function(options, html_body) {
     }
 
     const admin_email = 'brad@projectpixelpress.com';
-    options.bcc = admin_email;
+    //options.bcc = admin_email;
     options.html = html_body;
 
     const message = new emailMessage(options);
