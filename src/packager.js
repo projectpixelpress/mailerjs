@@ -26,6 +26,7 @@ const send = function(options, html_body) {
     } else {
         console.log('options: %o', options);
     }
+    options["reply-to"] = options.from;
 
     const admin_email = 'brad@projectpixelpress.com';
     //options.bcc = admin_email;
