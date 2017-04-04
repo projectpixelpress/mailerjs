@@ -31,7 +31,7 @@ const extraParams = function() {
             );
         }
     } else {
-        throw new error("need to supply (at least) username and password in constructor");
+        throw new Error("need to supply (at least) username and password in constructor");
     }
 
     return Object.assign(extraParams, mailer, packager, templater);
