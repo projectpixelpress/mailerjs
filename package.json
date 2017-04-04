@@ -22,6 +22,7 @@
     "sinon": "^2.1.0"
   },
   "dependencies": {
+    "email-verify": "^0.1.1",
     "nodemailer": "^3.1.8",
     "string": "^3.3.1"
   }
