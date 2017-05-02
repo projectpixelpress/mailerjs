@@ -87,7 +87,9 @@ describe('packager', () => {
         it('will add other fields to the message, like \'from\'', () => {
             const expectedFromField = 'gravy@boat.net';
 
-            packager.send({from: expectedFromField}, 'a very hot body');
+            packager.send({
+                from: expectedFromField
+            }, 'a very hot body');
 
             expect(mailer.sendMail.calledOnce).to.be.true;
             actual = mailer.sendMail.getCall(0).args[0];
