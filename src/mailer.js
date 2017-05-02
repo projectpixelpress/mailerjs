@@ -23,13 +23,11 @@ module.exports = {
             that.smtpTransport.sendMail(message, function(error) {
                 if (error) {
                     console.log('Error %o', error.message);
-                    that.smtpTransport.close();
-                    return;
                 } else {
                     console.log('Message sent successfully!');
-                    that.smtpTransport.close();
-                    return;
                 }
+                that.smtpTransport.close();
+                return;
             });
         });
     }
