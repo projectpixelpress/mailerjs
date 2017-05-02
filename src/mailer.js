@@ -1,5 +1,6 @@
 var nodemailer = require('nodemailer'),
     verifier = require('email-verify');
+const logger = require('./logger');
 
 var smtpTransport = nodemailer.createTransport({
     service: "SES-US-WEST-2",
@@ -19,11 +20,7 @@ module.exports = {
             console.log("err: %o", err);
             if (err) return false;
             that.smtpTransport.sendMail(message, function(error) {
-                if (error) {
-                    console.log('Error %o', error.message);
-                } else {
-                    console.log('Message sent successfully!');
-                }
+                console.log(logger.buildLog(message, error));
                 that.smtpTransport.close();
                 return;
             });
