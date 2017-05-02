@@ -76,12 +76,12 @@ describe('packager', () => {
             expect(actual.to).to.equal('brad@projectpixelpress.com');
         });
 
-        it('bccs the admin', () => {
+        it('does not bcc the admin by default', () => {
             packager.send(null, 'a very hot body');
 
             expect(mailer.sendMail.calledOnce).to.be.true;
             actual = mailer.sendMail.getCall(0).args[0];
-            expect(actual.bcc).to.equal('brad@projectpixelpress.com');
+            expect(actual.bcc).to.be.undefined;
         });
 
         it('will add other fields to the message, like \'from\'', () => {
