@@ -15,19 +15,19 @@ describe('smoketest - mailerjs', function() {
         });
 
         it('should export a function called send', function() {
-            expect(mailerjs.send).to.be.exist;
+            expect(mailerjs.send).to.exist;
         });
 
         it('should export a function called sendMail', function() {
-            expect(mailerjs.sendMail).to.be.exist;
+            expect(mailerjs.sendMail).to.exist;
         });
 
         it('should export a class called emailMessage', function() {
-            expect(mailerjs.emailMessage).to.be.exist;
+            expect(mailerjs.emailMessage).to.exist;
         });
 
         it('should export a function called parse_template', function() {
-            expect(mailerjs.parse_template).to.be.exist;
+            expect(mailerjs.parse_template).to.exist;
         });
     });
 });
