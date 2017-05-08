@@ -18,7 +18,7 @@ module.exports = {
         verifier.verify(message.to, null, function(err, info) {
             console.log("info: %o", info);
             console.log("err: %o", err);
-            if (err) return false;
+            if (err || !info.success) return false;
             that.smtpTransport.sendMail(message, function(error) {
                 console.log(logger.buildLog(message, error));
                 that.smtpTransport.close();
