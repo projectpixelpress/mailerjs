@@ -29,5 +29,9 @@ describe('smoketest - mailerjs', function() {
         it('should export a function called parse_template', function() {
             expect(mailerjs.parse_template).to.exist;
         });
+
+        it('should export a function called verify_email', function() {
+            expect(mailerjs.verify_email).to.exist;
+        });
     });
 });

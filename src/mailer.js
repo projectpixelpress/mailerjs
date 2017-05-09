@@ -1,5 +1,5 @@
-var nodemailer = require('nodemailer'),
-    verifier = require('email-verify');
+var nodemailer = require('nodemailer');
+const verifier = require('./verifier');
 const logger = require('./logger');
 
 var smtpTransport = nodemailer.createTransport({
@@ -15,15 +15,17 @@ module.exports = {
     sendMail: function(message) {
         let that = this;
         if (!message) return false;
-        verifier.verify(message.to, null, function(err, info) {
-            console.log("info: %o", info);
-            console.log("err: %o", err);
-            if (err || !info.success) return false;
-            that.smtpTransport.sendMail(message, function(error) {
+        verifier.verify_email(message.to).then(
+            () => {
+                that.smtpTransport.sendMail(message, function(error) {
+                    console.log(logger.buildLog(message, error));
+                    that.smtpTransport.close();
+                    return;
+                });
+            },
+            (error) => {
                 console.log(logger.buildLog(message, error));
-                that.smtpTransport.close();
-                return;
-            });
-        });
+            }
+        );
     }
 };
