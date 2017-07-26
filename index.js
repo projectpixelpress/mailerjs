@@ -5,6 +5,10 @@ var nodemailer = require('nodemailer');
 
 const extraParams = function() {
     console.log("extra params: %o",arguments);
+    let pooling = false;
+    if(!!arguments && !!arguments[0]["pooling"]) {
+        pooling = arguments[0]["pooling"];
+    }
 
     if(!!arguments && !!arguments[0]["username"] && !!arguments[0]["password"]) {
         if(!!arguments && arguments[0]["transport"] && arguments[0]["transport"] === "gmail") {
@@ -13,6 +17,7 @@ const extraParams = function() {
             mailer.smtpTransport = nodemailer.createTransport(
                 {
                     service: "Gmail",
+                    pool: pooling,
                     auth: {
                         user: arguments[0]["username"],
                         pass: arguments[0]["password"]
@@ -23,6 +28,7 @@ const extraParams = function() {
             mailer.smtpTransport = nodemailer.createTransport(
                 {
                     service: "SES-US-WEST-2",
+                    pool: pooling,
                     auth: {
                         user: arguments[0]["username"],
                         pass: arguments[0]["password"]
