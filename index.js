@@ -1,6 +1,7 @@
 const mailer = require('./src/mailer');
 const packager = require('./src/packager');
 const templater = require('./src/templater');
+const verifier = require('./src/verifier');
 var nodemailer = require('nodemailer');
 
 const extraParams = function() {
@@ -40,6 +41,6 @@ const extraParams = function() {
         throw new Error("need to supply (at least) username and password in constructor");
     }
 
-    return Object.assign(extraParams, mailer, packager, templater);
+    return Object.assign(extraParams, mailer, packager, templater, verifier);
 }
-module.exports = Object.assign(extraParams, mailer, packager, templater);
+module.exports = Object.assign(extraParams, mailer, packager, templater, verifier);
