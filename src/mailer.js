@@ -17,6 +17,13 @@ module.exports = {
         let that = this;
         if (!message) return false;
         if(!Array.isArray(message)) {
+            let verifyOptions = {
+                port : 25,
+                sender : 'share@projectpixelpress.com',
+                fqdn : 'smtp.gmail.com',
+                debug: true
+            };
+            let individualOptions = Object.assign({email:newMessage.to},verifyOptions);
             verifier.verify_email(message.to).then(
                 () => {
                     that.smtpTransport.sendMail(message, function(sendError) {
@@ -34,6 +41,13 @@ module.exports = {
             for(var i=0;i<message.length;i++) {
                 let newMessage = message[i];
                 asyncTasks.push(function(callback) {
+                    let verifyOptions = {
+                        port : 25,
+                        sender : 'share@projectpixelpress.com',
+                        fqdn : 'smtp.gmail.com',
+                        debug: true
+                    };
+                    let individualOptions = Object.assign({email:newMessage.to},verifyOptions);
                     verifier.verify_email(newMessage.to).then(
                         () => {
                             that.smtpTransport.sendMail(newMessage, function(sendError) {
