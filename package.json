@@ -1,6 +1,6 @@
 {
   "name": "pp-mailerjs",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "description": "Wrapper to send email via Amazon SES or gmail with templates and stuff",
   "main": "index.js",
   "scripts": {
