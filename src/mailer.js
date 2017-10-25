@@ -52,7 +52,6 @@ module.exports = {
                         () => {
                             that.smtpTransport.sendMail(newMessage, function(sendError) {
                                 if(sendError!==null) console.log(logger.buildLog(newMessage, sendError));
-                                // that.smtpTransport.close();
                                 callback();
                             });
                         },
