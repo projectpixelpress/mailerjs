@@ -9,7 +9,7 @@ module.exports = {
                 fqdn : 'smtp.gmail.com',
                 debug: true
             };
-            let individualOptions = Object.assign({email:newMessage.to},verifyOptions);
+            let individualOptions = Object.assign({email:email},verifyOptions);
             emailVerify.verify(individualOptions, null, function(err, info) {
                 console.log("info: %o", info);
                 console.log("err: %o", err);
