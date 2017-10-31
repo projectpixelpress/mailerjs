@@ -3,7 +3,14 @@ const emailVerify = require('email-verify');
 module.exports = {
     verify_email: (email) => {
         return new Promise((resolve, reject) => {
-            emailVerify.verify(email, null, function(err, info) {
+            let verifyOptions = {
+                port : 25,
+                sender : 'share@projectpixelpress.com',
+                fqdn : 'smtp.gmail.com',
+                debug: true
+            };
+            let individualOptions = Object.assign({email:newMessage.to},verifyOptions);
+            emailVerify.verify(individualOptions, null, function(err, info) {
                 console.log("info: %o", info);
                 console.log("err: %o", err);
                 if (err) {

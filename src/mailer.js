@@ -17,13 +17,6 @@ module.exports = {
         let that = this;
         if (!message) return false;
         if(!Array.isArray(message)) {
-            let verifyOptions = {
-                port : 25,
-                sender : 'share@projectpixelpress.com',
-                fqdn : 'smtp.gmail.com',
-                debug: true
-            };
-            let individualOptions = Object.assign({email:newMessage.to},verifyOptions);
             verifier.verify_email(message.to).then(
                 () => {
                     that.smtpTransport.sendMail(message, function(sendError) {
