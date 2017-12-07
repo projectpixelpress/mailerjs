@@ -4,6 +4,7 @@ const chaiAsPromised = require("chai-as-promised");
 
 chai.use(chaiAsPromised);
 chai.should();
+const expect = chai.expect
 
 const fs = require('fs');
 
@@ -15,15 +16,15 @@ describe('verifier', () => {
 
     describe('verify_email', () => {
         it('rejects bad formatting', () => {
-            verifier.verify_email('asdfasdf').should.be.rejected;
+            return expect(verifier.verify_email('asdfasdf')).to.eventually.be.resolved;
         });
 
         it('rejects unreachable emails', () => {
-            verifier.verify_email('evan@aNonexistentDomain.gov').should.be.rejected;
+            return expect(verifier.verify_email('evan@aNonexistentDomain.gov')).to.eventually.be.rejected;
         });
 
         it('resolves good emails', () => {
-            verifier.verify_email('evan@projectpixelpress.com').should.be.rejected;
+            return expect(verifier.verify_email('evan@projectpixelpress.com')).to.eventually.be.resolved;
         });
     });
 });
