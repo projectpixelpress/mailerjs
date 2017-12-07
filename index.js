@@ -5,7 +5,7 @@ const verifier = require('./src/verifier');
 var nodemailer = require('nodemailer');
 
 const extraParams = function() {
-    console.log("extra params: %o",arguments);
+    // console.log("extra params: %o",arguments);
     let pooling = false;
     if(!!arguments && !!arguments[0]["pooling"]) {
         pooling = arguments[0]["pooling"];
@@ -13,7 +13,7 @@ const extraParams = function() {
 
     if(!!arguments && !!arguments[0]["username"] && !!arguments[0]["password"]) {
         if(!!arguments && arguments[0]["transport"] && arguments[0]["transport"] === "gmail") {
-            console.log("changing to gmail");
+            // console.log("changing to gmail");
             delete mailer.smtpTransport;
             mailer.smtpTransport = nodemailer.createTransport(
                 {
