@@ -1,46 +1,52 @@
+var nodemailer = require('nodemailer');
+
 const mailer = require('./src/mailer');
 const packager = require('./src/packager');
 const templater = require('./src/templater');
 const verifier = require('./src/verifier');
-var nodemailer = require('nodemailer');
 
-const extraParams = function() {
-    // console.log("extra params: %o",arguments);
-    let pooling = false;
-    if(!!arguments && !!arguments[0]["pooling"]) {
-        pooling = arguments[0]["pooling"];
-    }
+const extraParams = function(options) {
+	if(options && options.username && options.password) {
+		let pooling = options.pooling || false;
 
-    if(!!arguments && !!arguments[0]["username"] && !!arguments[0]["password"]) {
-        if(!!arguments && arguments[0]["transport"] && arguments[0]["transport"] === "gmail") {
-            // console.log("changing to gmail");
-            delete mailer.smtpTransport;
-            mailer.smtpTransport = nodemailer.createTransport(
-                {
-                    service: "Gmail",
-                    pool: pooling,
-                    auth: {
-                        user: arguments[0]["username"],
-                        pass: arguments[0]["password"]
-                    }
-                }
-            );
-        } else {
-            mailer.smtpTransport = nodemailer.createTransport(
-                {
-                    service: "SES-US-WEST-2",
-                    pool: pooling,
-                    auth: {
-                        user: arguments[0]["username"],
-                        pass: arguments[0]["password"]
-                    }
-                }
-            );
-        }
-    } else {
-        throw new Error("need to supply (at least) username and password in constructor");
+		let service = null;
+
+		let transport = options.transport.toLowerCase();
+
+		switch(transport) {
+			case 'gmail' :
+				service = 'Gmail';
+			break;
+
+			case 'mandrill' :
+				service = 'Mandrill';
+			break;
+
+			case 'ses' :
+				service = 'SES-US-WEST-2';
+			break;
+
+			default :
+				service = 'SES-US-WEST-2';
+			break;
+		}
+
+		delete mailer.smtpTransport;
+
+		mailer.smtpTransport = nodemailer.createTransport({
+			service: service,
+			pool: pooling,
+			auth: {
+				user: options.username,
+				pass: options.password
+			}
+		});
+	}
+	else {
+        throw new Error("Need to supply (at least) username and password in constructor");
     }
 
     return Object.assign(extraParams, mailer, packager, templater, verifier);
 }
+
 module.exports = Object.assign(extraParams, mailer, packager, templater, verifier);
