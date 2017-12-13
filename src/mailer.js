@@ -13,11 +13,14 @@ var smtpTransport = nodemailer.createTransport({
 
 module.exports = {
     smtpTransport: smtpTransport,
-    sendMail: function(message) {
+    sendMail: function(message, strictVerification) {
+
+        if(strictVerification === undefined) strictVerification = true;
+
         let that = this;
         if (!message) return false;
         if(!Array.isArray(message)) {
-            verifier.verify_email(message.to).then(
+            verifier.verify_email(message.to, strictVerification).then(
                 () => {
                     that.smtpTransport.sendMail(message, function(sendError) {
                         console.log(logger.buildLog(message, sendError));
@@ -41,7 +44,7 @@ module.exports = {
                         debug: true
                     };
                     let individualOptions = Object.assign({email:newMessage.to},verifyOptions);
-                    verifier.verify_email(newMessage.to).then(
+                    verifier.verify_email(newMessage.to, strictVerification).then(
                         () => {
                             that.smtpTransport.sendMail(newMessage, function(sendError) {
                                 if(sendError!==null) console.log(logger.buildLog(newMessage, sendError));
