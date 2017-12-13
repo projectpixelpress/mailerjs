@@ -16,15 +16,58 @@ describe('verifier', () => {
 
     describe('verify_email', () => {
         it('rejects bad formatting', () => {
-            return expect(verifier.verify_email('asdfasdf')).to.eventually.be.resolved;
+            let email = 'asdf';
+            return verifier.verify_email(email).then(
+              () => {
+                return expect.fail("", "", "fails because "+email+" is a valid email");
+              },
+              () => {
+              }
+            )
         });
 
         it('rejects unreachable emails', () => {
-            return expect(verifier.verify_email('evan@aNonexistentDomain.gov')).to.eventually.be.rejected;
+            let email = 'evan@aNonexistentDomain.gov';
+            return verifier.verify_email(email).then(
+              () => {
+                return expect.fail("", "", "fails because "+email+" is a valid email");
+              },
+              () => {
+              }
+            )
         });
 
         it('resolves good emails', () => {
-            return expect(verifier.verify_email('evan@projectpixelpress.com')).to.eventually.be.resolved;
+            let email = 'evan@projectpixelpress.com';
+            return verifier.verify_email(email).then(
+              () => {
+              },
+              () => {
+                return expect.fail("", "", "fails because "+email+" is an invalid email");
+              }
+            )
+        });
+
+        it('rejects with simple email format', () => {
+            let email = 'asdf@asdf';
+            return verifier.verify_email(email, false).then(
+              () => {
+              },
+              (rejectReason) => {
+                return expect.fail("", "", "fails because "+email+" is a valid email");
+              }
+            )
+        });
+
+        it('resolves with simple email', () => {
+            let email = 'matt.scaperoth@projectpixelpress.com';
+            return verifier.verify_email(email, false).then(
+              () => {
+                return expect.fail("", "", "fails because "+email+" is not a valid email");
+              },
+              () => {
+              }
+            )
         });
     });
 });
