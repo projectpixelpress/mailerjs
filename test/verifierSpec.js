@@ -52,20 +52,20 @@ describe('verifier', () => {
             let email = 'asdf@asdf';
             return verifier.verify_email(email, false).then(
               () => {
+                return expect.fail("", "", "fails because "+email+" is a valid email");
               },
               (rejectReason) => {
-                return expect.fail("", "", "fails because "+email+" is a valid email");
               }
             )
         });
 
         it('resolves with simple email', () => {
-            let email = 'matt.scaperoth@projectpixelpress.com';
+            let email = 'swloadtesting+registrationTest100@gmail.com';
             return verifier.verify_email(email, false).then(
               () => {
-                return expect.fail("", "", "fails because "+email+" is not a valid email");
               },
               () => {
+                return expect.fail("", "", "fails because "+email+" is not a valid email");
               }
             )
         });

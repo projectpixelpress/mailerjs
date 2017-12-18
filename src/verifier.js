@@ -14,9 +14,9 @@ let simple_verify = (email, options, callback) => {
   var success = false;
 
   if( /(.+)@(.+){2,}\.(.+){2,}/.test(email) ){
-    success = false;
-  } else {
     success = true;
+  } else {
+    success = false;
   }
 
   return callback(null, { success: success, info: (email + ' is ' + (success ? 'a valid' : 'an invalid') + ' address'), addr: email, code: infoCodes.finishedVerification, tryagain:false, banner:'' })
