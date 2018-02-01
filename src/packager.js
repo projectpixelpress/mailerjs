@@ -12,7 +12,7 @@ class emailMessage {
     }
 }
 
-const send = function(options, html_body) {
+const send = function(options, html_body, strictVerification) {
     //options = {to: 'brad@projectpixelpress.com', template_name:'',subject:'',from:'',url_to_send:''}
     if (!html_body) {
         console.log('Will not send anything without a html_body!');
@@ -34,7 +34,7 @@ const send = function(options, html_body) {
 
     const message = new emailMessage(options);
 
-    mailer.sendMail(message);
+    mailer.sendMail(message, strictVerification);
 }
 
 module.exports = {

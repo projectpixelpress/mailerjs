@@ -126,5 +126,16 @@ describe('packager', () => {
             actual = mailer.sendMail.getCall(0).args[0];
             expect(actual.subject).to.equal(expectedSubject);
         });
+
+        it('accepts optional skip verification flag', () => {
+            const possibleValues = [false, true, undefined];
+            for (const expected of possibleValues) {
+                console.log(expected);
+                packager.send({}, 'a body', expected);
+
+                const strictVerification = mailer.sendMail.lastCall.args[1];
+                expect(strictVerification).to.equal(expected);
+            }
+        });
     });
 });
